@@ -86,9 +86,7 @@ builder.Services.AddWolverine(options =>
             )
             .UseConventionalRouting(conventions =>
             {
-                conventions.QueueNameForListener(type =>
-                    $"{"TestCustomer"}.{"MainService"}.{type.FullName}"
-                );
+                
             })
             .AutoProvision()
             .TenantIdBehavior(TenantedIdBehavior.FallbackToDefault);
