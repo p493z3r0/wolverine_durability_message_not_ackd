@@ -1,0 +1,78 @@
+services:
+  # 1. Receiver Service
+  receiver-service:
+    build:
+      context: .
+      dockerfile: ./receiver/Dockerfile
+    depends_on:
+      rabbit-main:
+        condition: service_healthy
+      rabbit-shared:
+        condition: service_healthy
+      postgres-db:
+        condition: service_healthy
+
+  # 2. Wolverine Service
+  wolverine-service:
+    build:
+      context: .
+      dockerfile: wolverine_durable_messaging_issue/Dockerfile
+    depends_on:
+      rabbit-main:
+        condition: service_healthy
+      rabbit-shared:
+        condition: service_healthy
+      postgres-db:
+        condition: service_healthy
+
+  # 3. Main RabbitMQ (Standard ports)
+  rabbit-main:
+    image: rabbitmq:3-management
+    container_name: rabbit_main
+    environment:
+      - RABBITMQ_DEFAULT_USER=admin
+      - RABBITMQ_DEFAULT_PASS=password123
+    ports:
+      - "5672:5672"   # AMQP
+      - "15672:15672" # Management UI
+    healthcheck:
+      test: [ "CMD", "rabbitmq-diagnostics", "-q", "ping" ]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  # 4. Shared RabbitMQ (Shifted ports to avoid conflict)
+  rabbit-shared:
+    image: rabbitmq:3-management
+    container_name: rabbit_shared
+    environment:
+      - RABBITMQ_DEFAULT_USER=guest_user
+      - RABBITMQ_DEFAULT_PASS=guest_pass
+    ports:
+      - "5673:5672"   # AMQP (Mapped to 5673 on your host)
+      - "15673:15672" # Management UI (Mapped to 15673 on your host)
+    healthcheck:
+      test: [ "CMD", "rabbitmq-diagnostics", "-q", "ping" ]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  # 5. PostgreSQL Database
+  postgres-db:
+    image: postgres:latest
+    container_name: postgres_db
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=1234
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql
+    healthcheck:
+      test: [ "CMD-SHELL", "pg_isready -U postgres" ]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+# Persistent storage for your database
+volumes:
+  postgres_data:

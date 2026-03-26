@@ -1,0 +1,28 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "wolverine_durable_messaging_issue", "wolverine_durable_messaging_issue\wolverine_durable_messaging_issue.csproj", "{9641D900-8C09-4685-8EDD-DB826E6E7353}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "receiver", "receiver\receiver.csproj", "{4C81D4C9-1700-41DD-8734-2EB9212A6572}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "contracts", "contracts\contracts.csproj", "{DA6E7C10-7818-47AD-B45A-2F67224C4809}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{9641D900-8C09-4685-8EDD-DB826E6E7353}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9641D900-8C09-4685-8EDD-DB826E6E7353}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9641D900-8C09-4685-8EDD-DB826E6E7353}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9641D900-8C09-4685-8EDD-DB826E6E7353}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4C81D4C9-1700-41DD-8734-2EB9212A6572}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4C81D4C9-1700-41DD-8734-2EB9212A6572}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4C81D4C9-1700-41DD-8734-2EB9212A6572}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4C81D4C9-1700-41DD-8734-2EB9212A6572}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DA6E7C10-7818-47AD-B45A-2F67224C4809}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DA6E7C10-7818-47AD-B45A-2F67224C4809}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DA6E7C10-7818-47AD-B45A-2F67224C4809}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DA6E7C10-7818-47AD-B45A-2F67224C4809}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal

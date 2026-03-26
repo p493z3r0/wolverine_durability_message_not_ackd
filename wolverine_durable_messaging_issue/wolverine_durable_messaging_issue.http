@@ -1,0 +1,6 @@
+@wolverine_durable_messaging_issue_HostAddress = http://localhost:5025
+
+GET {{wolverine_durable_messaging_issue_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
